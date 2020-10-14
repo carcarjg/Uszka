@@ -8,7 +8,7 @@ using Cosmos.Core;
 using Cosmos.HAL;
 using Cosmos.HAL.Drivers;
 using System.Drawing;
-using Jajka_OS;
+using Uszka_OS;
 
 namespace Uszka.Drivers
 {

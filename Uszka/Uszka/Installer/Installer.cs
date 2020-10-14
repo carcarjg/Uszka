@@ -8,7 +8,7 @@ using Cosmos.Core;
 using Cosmos.HAL;
 using Cosmos.HAL.Drivers;
 using System.IO;
-using Jajka_OS;
+using Uszka_OS;
 
 namespace Uszka.Installer
 {
@@ -36,7 +36,7 @@ namespace Uszka.Installer
                 fs.CreateFile("0:\\SYSTEM\\readme.txt");
                 fs.CreateFile("0:\\SYSTEM\\sysinfo.txt");
                 Console.WriteLine("Setting User Preferences...");
-                File.WriteAllText("0:\\SYSTEM\\System.cs", "using tutOS.System;" +
+                File.WriteAllText("0:\\SYSTEM\\System.cx", "using Jajka_OS;" +
                     "namespace System { " +
                     "class System" +
                     "{" +
@@ -48,14 +48,17 @@ namespace Uszka.Installer
                 File.WriteAllText("0:\\SYSTEM\\readme.txt", "Note: Put the license here!");
                 File.WriteAllText("0:\\SYSTEM\\sysinfo.txt", "Uszka Version 0.0.1 [8 GB]");
                 fs.CreateDirectory("0:\\Documents\\");
-                Console.WriteLine("Deleting Preinstalled CosmosVFS Files");
-                //Directory.Delete("0:\\Dir Testing\\");
-                //Directory.Delete("0:\\TEST\\");
-                //fs.DeleteDirectory("0:\\Dir Testing\\");
-                //fs.DeleteDirectory("0:\\TEST\\");
-                File.Delete("0:\\Kudzu.txt");
-                File.Delete("0:\\Root.txt");
-
+                try
+                {
+                    Console.WriteLine("Deleting Preinstalled CosmosVFS Files");
+                    Directory.Delete("0:\\Dir Testing\\");
+                    Directory.Delete("0:\\TEST\\");
+                    //fs.DeleteDirectory("0:\\Dir Testing\\");
+                    //fs.DeleteDirectory("0:\\TEST\\");
+                    File.Delete("0:\\Kudzu.txt");
+                    File.Delete("0:\\Root.txt");
+                }
+                catch (Exception ex) { }
                 Console.WriteLine("Setting Flags");
                 if (!File.Exists("0:\\Flags.flg"))
                 {
@@ -65,9 +68,26 @@ namespace Uszka.Installer
                         sw.Write("2");
                     }
                 }
-                Console.Write("Press any key to reboot...");
-                Console.ReadKey();
-                Power.ACPIReboot();
+                Console.Write("Press R to reboot...");
+                /*
+                char readkey = Console.ReadKey().KeyChar;
+                if (readkey == 'R' || readkey == 'r')
+                {
+                    Power.ACPIReboot();
+                }
+                else if (readkey == 'E' || readkey == 'e') 
+                {
+                    CrashHandler CH = new CrashHandler();
+                    try
+                    {
+                        TestingException ex = new TestingException();
+                        CH.Whoops(ex);
+                    }
+                    catch (Exception ex) 
+                    {
+                        CH.Whoops(ex);
+                    }
+                }*/
             }
             catch(Exception ex)
             {

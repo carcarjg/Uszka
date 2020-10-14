@@ -6,7 +6,7 @@ using Cosmos.System.Graphics;
 using Cosmos.HAL.Drivers;
 using Cosmos.HAL;
 
-namespace Jajka_OS
+namespace Uszka_OS
 {
     public static class Errors
     {
@@ -32,5 +32,21 @@ namespace Jajka_OS
             }
         }
 
+    }
+    public class TestingException : Exception
+    {
+        public TestingException()
+        {
+        }
+
+        public TestingException(string message)
+            : base(message)
+        {
+        }
+
+        public TestingException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
     }
 }
