@@ -37,11 +37,18 @@ namespace Aura_OS.System
         {
             if (Uszka.Kernel.ContainsVolumes())
             {
-                if (File.Exists(@"0:\System\settings.conf"))
+                try
                 {
-                    return "true";
+                    if (File.Exists(@"0:\System\settings.conf"))
+                    {
+                        return "true";
+                    }
+                    else
+                    {
+                        return "continue";
+                    }
                 }
-                else
+                catch (Exception ex) 
                 {
                     return "continue";
                 }

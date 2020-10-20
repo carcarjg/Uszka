@@ -73,7 +73,7 @@ namespace Uszka
             }
             WaitSeconds(5);
 
-            PCSpeaker.Beep(850);
+            PCSpeaker.Beep(850,10);
             startupchecks();
 
 
@@ -172,10 +172,11 @@ namespace Uszka
         }
         void startupchecks()
         {
+            Aura_OS.System.Setup SU = new Setup();
             try
             {
                 //New stuff
-                Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
+                //Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
                 if (ContainsVolumes())
                 {
                     Aura_OS.System.CustomConsole.WriteLineOK("FileSystem Registration");
@@ -188,7 +189,7 @@ namespace Uszka
                 NetworkInit.Init();
 
                 Aura_OS.System.CustomConsole.WriteLineOK("Uszka-OS successfully started!");
-                Aura_OS.System.Setup SU = new Setup();
+                
                 SU.InitSetup();
 
                 if (SystemExists)
@@ -312,6 +313,7 @@ namespace Uszka
 
         private static void printLogoConsole()
         {
+            Console.Clear();
             Console.WriteLine(@"  _    _  _____ _______  __                ____   _____ ");
             Console.WriteLine(@" | |  | |/ ____|___  / |/ /    /\         / __ \ / ____|");
             Console.WriteLine(@" | |  | | (___    / /| ' /    /  \ ______| |  | | (___  ");

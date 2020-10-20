@@ -19,29 +19,13 @@ namespace Uszka_OS
             try
             {
                 DisplayDriver.Vcanvas.Clear(System.Drawing.Color.Blue);
-                FontDrawer.WriteText("A Error has ocurred", 400, 300, expack.Color.Black);
-                FontDrawer.WriteText(ex.Message, 400, 200, expack.Color.Black);
+                Aura_OS.System.CustomConsole.WriteLineError("A Error has ocurred");
+                Aura_OS.System.CustomConsole.WriteLineError(ex.Message);
             }
             catch (Exception ex1) 
             {
-                Delay D = new Delay();
-                int i = 0;
-                do {
-                    PCSpeaker.Beep(1050);
-                    D.DelayInMS(100);
-                    PCSpeaker.Beep(900);
-                    D.DelayInMS(100);
-                    PCSpeaker.Beep(1050);
-                    D.DelayInMS(100);
-                    PCSpeaker.Beep(900);
-                    D.DelayInMS(100);
-                    PCSpeaker.Beep(1050);
-                    D.DelayInMS(100);
-                    PCSpeaker.Beep(900);
-                    D.DelayInMS(100);
-                    i++;
-                } while (i != 5);
-                //Power.ACPIShutdown();
+                DisplayDriver.Vcanvas.Clear(System.Drawing.Color.Red);
+                Power.ACPIShutdown();
             }
         }
     }
